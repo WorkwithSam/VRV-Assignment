@@ -6,7 +6,7 @@ LOG_FILE = "sample.log"
 OUTPUT_CSV = "log_analysis_results.csv"
 FAILED_LOGIN_THRESHOLD = 10
 
-# Function to parse the log file and extract information
+#I have started with Function to parse the log file and extract information
 def parse_log(file_path):
     ip_requests = Counter()
     endpoint_requests = Counter()
@@ -30,13 +30,13 @@ def parse_log(file_path):
                 endpoint = endpoint_match.group(1)
                 endpoint_requests[endpoint] += 1
 
-            # Check for failed login attempts (401 status or specific message)
+            #And here i have Checked for failed login attempts (401 status or specific message)
             if status_code_match and int(status_code_match.group(1)) == 401:
                 failed_login_attempts[ip] += 1
 
     return ip_requests, endpoint_requests, failed_login_attempts
 
-# Analyze results and save to CSV
+#Now for next move i have Analyzed results and saveed to CSV
 def analyze_and_save_results(ip_requests, endpoint_requests, failed_login_attempts):
     # Sort requests per IP
     sorted_ip_requests = sorted(ip_requests.items(), key=lambda x: x[1], reverse=True)
@@ -63,7 +63,7 @@ def analyze_and_save_results(ip_requests, endpoint_requests, failed_login_attemp
     else:
         print("No suspicious activity detected.")
 
-    # Save results to CSV
+    #At last i have Saved results to CSV
     with open(OUTPUT_CSV, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
 
@@ -87,7 +87,9 @@ def analyze_and_save_results(ip_requests, endpoint_requests, failed_login_attemp
 
     print(f"\nResults saved to {OUTPUT_CSV}")
 
-# Main function
+# Main function as the last call
 if __name__ == "__main__":
     ip_requests, endpoint_requests, failed_login_attempts = parse_log(LOG_FILE)
     analyze_and_save_results(ip_requests, endpoint_requests, failed_login_attempts)
+
+#Code Ends
